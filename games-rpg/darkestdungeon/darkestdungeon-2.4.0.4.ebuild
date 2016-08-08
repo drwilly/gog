@@ -34,6 +34,13 @@ QA_PREBUILT="
 	${dir#/}/lib64/*
 "
 
+png_fix() {
+	pngfix --quiet --optimize --suffix=".pngfix" "$@"
+	for png; do
+			mv "${png}.pngfix" "$png"
+	done
+}
+
 src_prepare() {
 	if ! use bundled-libs; then
 		einfo "Removing bundled libs..."
@@ -50,6 +57,10 @@ src_prepare() {
 		rm *.bin.x86_64
 		rm -r lib64/
 	fi
+
+	png_fix \
+		panels/icons_equip/quest_item/inv_quest_item+beacon_light.png \
+		shared/tutorial_popup/tutorial_popup.combat.png
 
 	default
 }
