@@ -56,7 +56,6 @@ src_prepare() {
 	fi
 
 	rm Content/Textures/Thumbs.db
-	rm Transistor.exe
 
 	default
 }
