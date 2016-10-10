@@ -35,10 +35,8 @@ QA_PREBUILT="
 "
 
 png_fix() {
-	pngfix --quiet --optimize --suffix=".pngfix" "$@"
-	for png; do
-			mv "${png}.pngfix" "$png"
-	done
+	pngfix --quiet --optimize --prefix="pngfix:" "$@"
+	rename "pngfix:" "" "$@"
 }
 
 src_prepare() {
@@ -57,6 +55,10 @@ src_prepare() {
 		rm *.bin.x86_64
 		rm -r lib64/
 	fi
+
+	rm \
+		localization/localization.bat \
+		localization/project_paths.txt
 
 	png_fix \
 		panels/icons_equip/quest_item/inv_quest_item+beacon_light.png \
