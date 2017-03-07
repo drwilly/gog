@@ -82,9 +82,5 @@ src_install() {
 	make_wrapper "${PN}" ./darkest.bin.${myarch} "${dir}"
 
 	mkdir -p "${D}/${dir}"
-	mv * "${D}/${dir}"
-#	insinto "${dir}"
-#	doins -r *
-
-#	fperms +x "${dir}"/darkest.bin.*
+	mv -t "${D}/${dir}" *
 }
