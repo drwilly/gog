@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -15,10 +15,10 @@ IUSE="bundled-libs"
 CHECKREQS_DISK_BUILD=2G
 
 # see game/README.linux
-# TOOD bundled-libs
-# libfmod.so.6          -> ??? (not media-libs/fmod)
-# libfmodstudio.so.6    -> ???
-# libSDL2-2.0.so.0      -> media-libs/libsdl2
+# TODO bundled-libs
+# libfmod.so.6          : ??? (not media-libs/fmod)
+# libfmodstudio.so.6    : ???
+# libSDL2-2.0.so.0      : media-libs/libsdl2
 RDEPEND="
 	virtual/opengl
 	!bundled-libs? (
@@ -30,8 +30,7 @@ DEPEND=""
 
 QA_PREBUILT="
 	${dir#/}/*.bin.x86{,_64}
-	${dir#/}/lib/*
-	${dir#/}/lib64/*
+	${dir#/}/lib{,64}/*
 "
 
 png_fix() {
@@ -42,9 +41,7 @@ png_fix() {
 src_prepare() {
 	if ! use bundled-libs; then
 		einfo "Removing bundled libs..."
-		for file in libSDL2-2.0.so.0; do
-			rm -v lib{,64}/$file
-		done
+		rm -v lib{,64}/libSDL2-2.0.so.0
 	fi
 
 	if ! use x86; then
@@ -76,10 +73,10 @@ src_prepare() {
 
 src_install() {
 	myarch=$(usex amd64 "x86_64" "x86")
-
-	newicon -s 128 Icon.bmp "${PN}.bmp"
-	make_desktop_entry "${PN}"
 	make_wrapper "${PN}" ./darkest.bin.${myarch} "${dir}"
+
+	make_desktop_entry "${PN}"
+	newicon -s 128 Icon.bmp "${PN}.bmp"
 
 	mkdir -p "${D}/${dir}"
 	mv -t "${D}/${dir}" *

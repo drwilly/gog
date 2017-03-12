@@ -15,7 +15,7 @@ IUSE="bundled-libs"
 CHECKREQS_DISK_BUILD=2G
 
 # see game/README.linux
-# TOOD bundled-libs
+# TODO bundled-libs
 # libfmod.so.6          -> ??? (not media-libs/fmod)
 # libfmodstudio.so.6    -> ???
 # libSDL2-2.0.so.0      -> media-libs/libsdl2

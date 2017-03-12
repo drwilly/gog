@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -34,16 +34,13 @@ DEPEND=""
 
 QA_PREBUILT="
 	${dir#/}/*.bin.x86{,_64}
-	${dir#/}/lib/*
-	${dir#/}/lib64/*
+	${dir#/}/lib{,64}/*
 "
 
 src_prepare() {
 	if ! use bundled-libs; then
 		einfo "Removing bundled libs..."
-		for file in libSDL2-2.0.so.0; do
-			rm -v lib{,64}/$file
-		done
+		rm -v lib{,64}/libSDL2-2.0.so.0
 	fi
 
 	if ! use x86; then
@@ -62,15 +59,11 @@ src_prepare() {
 
 src_install() {
 	myarch=$(usex amd64 "x86_64" "x86")
-
-	doicon -s 256 Transistor.bmp
-	make_desktop_entry "${PN}"
 	make_wrapper "${PN}" ./Transistor.bin.${myarch} "${dir}"
 
-	mkdir -p "${D}/${dir}"
-	mv * "${D}/${dir}"
-#	insinto "${dir}"
-#	doins -r *
+	make_desktop_entry "${PN}"
+	doicon -s 256 Transistor.bmp
 
-#	fperms +x "${dir}"/darkest.bin.*
+	mkdir -p "${D}/${dir}"
+	mv -t "${D}/${dir}" *
 }

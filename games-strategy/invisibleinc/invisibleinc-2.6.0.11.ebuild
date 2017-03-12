@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -13,7 +13,7 @@ KEYWORDS="-* amd64 x86"
 IUSE="bundled-libs"
 
 # about 1.2G
-CHECKREQS_DISK_BUILD=2G
+CHECKREQS_DISK_BUILD=1500M
 
 # see game/README.linux
 # TOOD bundled-libs
@@ -70,9 +70,9 @@ src_prepare() {
 
 src_install() {
 	myarch=$(usex amd64 "64" "32")
+	make_wrapper "${PN}" ./InvisibleInc${myarch} "${dir}"
 
 	make_desktop_entry "${PN}"
-	make_wrapper "${PN}" ./InvisibleInc${myarch} "${dir}"
 
 	mkdir -p "${D}/${dir}"
 	mv -t "${D}/${dir}" *
