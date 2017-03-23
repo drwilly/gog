@@ -6,7 +6,7 @@ EAPI=6
 GOG_PN="invisible_inc"
 inherit gog-games
 
-DESCRIPTION="Take control of Invisible's agents in the field and infiltrate the world's most dangerous corporations"
+DESCRIPTION="Control Invisible's agents and infiltrate the world's most dangerous corporations"
 
 LICENSE="all-rights-reserved"
 KEYWORDS="-* amd64 x86"
@@ -15,13 +15,24 @@ IUSE="bundled-libs"
 # about 1.2G
 CHECKREQS_DISK_BUILD=1500M
 
-# see game/README.linux
 # TOOD bundled-libs
 #libsteam_api
 #libfmodevent
 #libfmodex
 RDEPEND="
+	media-libs/alsa-lib
 	virtual/opengl
+	x11-libs/libX11
+	x11-libs/libXau
+	x11-libs/libXcursor
+	x11-libs/libXdcmp
+	x11-libs/libXext
+	x11-libs/libXfixes
+	x11-libs/libXi
+	x11-libs/libXrandr
+	x11-libs/libXrender
+	x11-libs/libXxf86vm
+	x11-libs/libxcb
 	!bundled-libs? (
 		media-libs/libsdl2[haptic]
 	)

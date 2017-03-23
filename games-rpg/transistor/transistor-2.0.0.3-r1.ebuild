@@ -6,7 +6,7 @@ EAPI=6
 GOG_PN="transistor"
 inherit gog-games
 
-DESCRIPTION="A sci-fi themed action RPG that seamlessly integrates strategic planning with rich atmospheric storytelling"
+DESCRIPTION="A sci-fi themed action RPG that integrates strategic planning with atmospheric storytelling"
 
 LICENSE="all-rights-reserved"
 KEYWORDS="-* amd64 x86"
