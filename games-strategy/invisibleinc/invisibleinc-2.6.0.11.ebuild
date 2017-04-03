@@ -25,7 +25,7 @@ RDEPEND="
 	x11-libs/libX11
 	x11-libs/libXau
 	x11-libs/libXcursor
-	x11-libs/libXdcmp
+	x11-libs/libXdmcp
 	x11-libs/libXext
 	x11-libs/libXfixes
 	x11-libs/libXi
