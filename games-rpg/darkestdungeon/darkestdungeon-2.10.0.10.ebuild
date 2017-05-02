@@ -42,16 +42,22 @@ RDEPEND="
 DEPEND=""
 
 QA_PREBUILT="
-	${dir#/}/*.bin.x86{,_64}
-	${dir#/}/lib{,64}/*
+	${dir#/}/darkest.bin.x86
+	${dir#/}/darkest.bin.x86_64
+	${dir#/}/lib/*
+	${dir#/}/lib64/*
 "
 
 png_fix() {
-	pngfix --quiet --optimize --prefix="pngfix:" "$@"
-	rename "pngfix:" "" "$@"
+	pngfix --quiet --optimize --suffix=":pngfix" "$@"
+	for f; do
+		mv "$f:pngfix" "$f"
+	done
 }
 
 src_prepare() {
+	chmod +x lib{,64}/libfmod*.so.6
+
 	if ! use bundled-libs; then
 		einfo "Removing bundled libs..."
 		rm -v lib{,64}/libSDL2-2.0.so.0
