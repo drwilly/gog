@@ -49,7 +49,7 @@ gog-games_pkg_nofetch() {
 	einfo "      b) login into your account"
 	einfo "      c) go to 'Account' section"
 	einfo "      d) select '${GOG_PN}'"
-	einfo "      e) chose 'OS: Linux' and 'Language: Englih' (Linux version of archive contains all supported languages)"
+	einfo "      e) chose 'OS: Linux' and 'Language: English' (Linux version of archive contains all supported languages)"
 	einfo "      f) in file list click on '${GOG_PN}'"
 	einfo "   2) by programm 'lgogdownloader'"
 	einfo "      a) install 'games-util/lgogdownloader': emerge games-util/lgogdownloader"
