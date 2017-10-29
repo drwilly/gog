@@ -4,7 +4,9 @@
 
 EAPI=6
 GOG_PN="darkest_dungeon"
+GOG_PV="${PV}_15970"
 inherit gog-games
+SRC_URI="${GOG_PN}_en_${GOG_PV}.sh"
 
 DESCRIPTION="A challenging gothic RPG about the stresses of dungeon crawling"
 
@@ -20,20 +22,7 @@ CHECKREQS_DISK_BUILD=2G
 # libfmodstudio.so.6    : ???
 # libSDL2-2.0.so.0      : media-libs/libsdl2
 RDEPEND="
-	dev-libs/libbsd
-	media-libs/alsa-lib
 	virtual/opengl
-	x11-libs/libX11
-	x11-libs/libXau
-	x11-libs/libXcursor
-	x11-libs/libXdmcp
-	x11-libs/libXext
-	x11-libs/libXfixes
-	x11-libs/libXi
-	x11-libs/libXrandr
-	x11-libs/libXrender
-	x11-libs/libXxf86vm
-	x11-libs/libxcb
 	!bundled-libs? (
 		media-libs/libsdl2
 	)
@@ -76,12 +65,10 @@ src_prepare() {
 		localization/localization.bat \
 		localization/project_paths.txt
 
-	for p in ps4 psv; do
-		rm -r \
-			shaders_$p/ \
-			video_$p/ \
-			localization/$p/
-	done
+	rm -r \
+		shaders_{ps4,psv}/ \
+		video_{ps4,psv}/ \
+		localization/{ps4,psv}/
 
 	png_fix \
 		panels/icons_equip/quest_item/inv_quest_item+beacon_light.png \

@@ -3,16 +3,18 @@
 # $Id$
 
 EAPI=6
-GOG_PN="darkest_dungeon_the_crimson_court_dlc"
+GOG_PN="darkest_dungeon_the_shieldbreaker_dlc"
+GOG_PV="${PV}_15970"
 inherit gog-games
+SRC_URI="${GOG_PN}_en_${GOG_PV}.sh"
 
-DESCRIPTION="A parallel campaign alongside the main Darkest Dungeon content"
+DESCRIPTION=""
 
 LICENSE="all-rights-reserved"
 KEYWORDS="-* amd64 x86"
 IUSE=""
 
-CHECKREQS_DISK_BUILD=400M
+CHECKREQS_DISK_BUILD=40M
 
 RDEPEND="games-rpg/darkestdungeon"
 
@@ -20,7 +22,7 @@ DEPEND=""
 
 src_prepare() {
 	rm \
-		dlc/580100_crimson_court/localization/localization.bat
+		dlc/702540_theshieldbreaker/localization/localization.bat
 
 	default
 }

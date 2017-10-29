@@ -4,7 +4,9 @@
 
 EAPI=6
 GOG_PN="darkest_dungeon_the_crimson_court_dlc"
+GOG_PV="${PV}_15970"
 inherit gog-games
+SRC_URI="${GOG_PN}_en_${GOG_PV}.sh"
 
 DESCRIPTION="A parallel campaign alongside the main Darkest Dungeon content"
 
