@@ -4,17 +4,25 @@
 
 EAPI=6
 GOG_PN="darkest_dungeon"
-GOG_PV="${PV}_15970"
 inherit gog-games
-SRC_URI="${GOG_PN}_en_${GOG_PV}.sh"
+
+SRC_URI="
+	${GOG_PN}_en_${PV}_16066.sh
+	dlc_crimsoncourt? ( ${GOG_PN}_the_crimson_court_dlc_en_${PV}_16065.sh )
+	dlc_shieldbreaker? ( ${GOG_PN}_the_shieldbraeker_dlc_en_${PV}_16065.sh )
+"
 
 DESCRIPTION="A challenging gothic RPG about the stresses of dungeon crawling"
 
 LICENSE="all-rights-reserved"
 KEYWORDS="-* amd64 x86"
-IUSE="bundled-libs"
+IUSE="
+	bundled-libs
+	dlc_crimsoncourt
+	dlc_shieldbreaker
+"
 
-CHECKREQS_DISK_BUILD=2G
+CHECKREQS_DISK_BUILD=2500M
 
 # see game/README.linux
 # TODO bundled-libs
@@ -68,11 +76,21 @@ src_prepare() {
 	rm -r \
 		shaders_{ps4,psv}/ \
 		video_{ps4,psv}/ \
-		localization/{ps4,psv}/
+		localization/{ps4,psv,iPhone}/
 
 	png_fix \
 		panels/icons_equip/quest_item/inv_quest_item+beacon_light.png \
 		shared/tutorial_popup/tutorial_popup.combat.png
+
+	if use dlc_crimsoncourt; then
+		rm \
+			dlc/580100_crimson_court/localization/localization.bat
+	fi
+
+	if use dlc_shieldbreaker; then
+		rm \
+			dlc/702540_theshieldbreaker/localization/localization.bat
+	fi
 
 	default
 }
@@ -83,6 +101,12 @@ src_install() {
 
 	make_desktop_entry "${PN}"
 	newicon -s 128 Icon.bmp "${PN}.bmp"
+
+	find . \
+		-exec chown root:games {} + \
+		-exec chmod 0750 {} + \
+		-type d \
+			-exec chmod g+x {} +
 
 	mkdir -p "${D}/${dir}"
 	mv -t "${D}/${dir}" *
