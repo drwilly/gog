@@ -8,7 +8,7 @@ inherit gog-games
 
 SRC_URI="ftl_advanced_edition_en_1_6_3_${PV}.sh"
 
-DESCRIPTION=""
+DESCRIPTION="Faster Than Light: A spaceship simulation real-time roguelike-like game"
 
 LICENSE="all-rights-reserved"
 KEYWORDS="-* amd64 x86"
