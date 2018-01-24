@@ -1,0 +1,52 @@
+# Copyright 1999-2016 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Id$
+
+EAPI=6
+GOG_PN="faster_than_light"
+inherit gog-games
+
+SRC_URI="ftl_advanced_edition_en_1_6_3_${PV}.sh"
+
+DESCRIPTION=""
+
+LICENSE="all-rights-reserved"
+KEYWORDS="-* amd64 x86"
+IUSE=""
+
+CHECKREQS_DISK_BUILD=200M
+
+RDEPEND="
+	virtual/opengl
+	media-libs/alsa-lib
+	x11-libs/libX11
+"
+
+DEPEND=""
+
+QA_PREBUILT="/opt/**"
+
+S="${S}/data"
+
+src_prepare() {
+	if ! use x86; then
+		rm FTL.x86
+	fi
+	if ! use amd64; then
+		rm FTL.amd64
+	fi
+
+	rm FTL
+	rm -r licenses/
+
+	default
+}
+
+src_install() {
+	newicon exe_icon.bmp "${PN}.bmp"
+	make_wrapper "${PN}" "./FTL.$ARCH" "/opt/${PN}/"
+	make_desktop_entry "${PN}" "Faster Than Light" "${PN}.bmp"
+
+	mkdir -p "${D}/opt/${PN}/"
+	mv -t "${D}/opt/${PN}/" ftl.dat "FTL.$ARCH"
+}
