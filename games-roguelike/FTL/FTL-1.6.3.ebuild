@@ -6,7 +6,9 @@ EAPI=6
 GOG_PN="faster_than_light"
 inherit gog-games
 
-SRC_URI="ftl_advanced_edition_en_1_6_3_${PV}.sh"
+MY_PV="${PV//\./_}"
+
+SRC_URI="ftl_advanced_edition_en_${MY_PV}_17917.sh"
 
 DESCRIPTION="Faster Than Light: A spaceship simulation real-time roguelike-like game"
 
