@@ -99,15 +99,14 @@ src_install() {
 	myarch=$(usex amd64 "x86_64" "x86")
 	make_wrapper "${PN}" ./darkest.bin.${myarch} "${dir}"
 
-	make_desktop_entry "${PN}"
 	newicon -s 128 Icon.bmp "${PN}.bmp"
-
-	find . \
-		-exec chown root:games {} + \
-		-exec chmod 0750 {} + \
-		-type d \
-			-exec chmod g+x {} +
+	make_desktop_entry "${PN}" "Darkest Dungeon" "${PN}.bmp"
 
 	mkdir -p "${D}/${dir}"
-	mv -t "${D}/${dir}" *
+	mv -t "${D}/${dir}" ./*
+
+	find "${D}/${dir}/" \
+		-exec chown root:games {} + \
+		'(' -type d -o -name '*.so.*' -o -name '*.bin.*' ')' -exec chmod 750 {} + \
+		-o -type f -exec chmod 640 {} +
 }

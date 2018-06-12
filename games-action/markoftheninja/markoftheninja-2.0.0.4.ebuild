@@ -21,11 +21,12 @@ RDEPEND="
 		media-libs/libsdl
 	)
 "
+
 DEPEND=""
 
 QA_PREBUILT="
-	${dir#/}/bin/ninja-bin{32,64}
-	${dir#/}/bin/lib{,64}/*
+	${dir#/}/bin/ninja-bin*
+	${dir#/}/bin/lib*/*
 "
 
 src_prepare() {
@@ -57,11 +58,11 @@ src_prepare() {
 
 src_install() {
 	myarch=$(usex amd64 "64" "32")
-
-	newicon bin/motn_icon.xpm "${PN}.xpm"
-	make_desktop_entry "${PN}"
 	make_wrapper "${PN}" "env force_s3tc_enable=true ./ninja-bin${myarch}" "${dir}/bin/" "${dir}/bin/lib${myarch}/"
 
+	newicon bin/motn_icon.xpm "${PN}.xpm"
+	make_desktop_entry "${PN}" "Mark of the Ninja" "${PN}.xpm"
+
 	mkdir -p "${D}/${dir}"
-	mv -t "${D}/${dir}" *
+	mv -t "${D}/${dir}" ./*
 }

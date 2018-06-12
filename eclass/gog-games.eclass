@@ -79,9 +79,7 @@ gog-games_pkg_postinst() {
 		elog
 	fi
 
-	if has bundled-libs ${IUSE}; then
-		if ! use bundled-libs; then
-			elog "If you have problems like distorted audio or video, then try to reinstall package with 'bundled-libs' use flag turned on"
-		fi
+	if has bundled-libs ${IUSE} && ! use bundled-libs; then
+		elog "If you have problems try to reinstall package with 'bundled-libs' use flag turned on"
 	fi
 }

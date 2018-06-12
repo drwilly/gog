@@ -45,8 +45,9 @@ src_prepare() {
 }
 
 src_install() {
-	newicon exe_icon.bmp "${PN}.bmp"
 	make_wrapper "${PN}" "./FTL.$ARCH" "/opt/${PN}/"
+
+	newicon exe_icon.bmp "${PN}.bmp"
 	make_desktop_entry "${PN}" "Faster Than Light" "${PN}.bmp"
 
 	mkdir -p "${D}/opt/${PN}/"

@@ -4,7 +4,9 @@
 
 EAPI=6
 GOG_PN="invisible_inc"
+GOG_PV="8_07_2017_15873"
 inherit gog-games
+SRC_URI="${GOG_PN}_en_${GOG_PV}.sh"
 
 DESCRIPTION="Control Invisible's agents and infiltrate the world's most dangerous corporations"
 
@@ -22,17 +24,6 @@ CHECKREQS_DISK_BUILD=1500M
 RDEPEND="
 	media-libs/alsa-lib
 	virtual/opengl
-	x11-libs/libX11
-	x11-libs/libXau
-	x11-libs/libXcursor
-	x11-libs/libXdmcp
-	x11-libs/libXext
-	x11-libs/libXfixes
-	x11-libs/libXi
-	x11-libs/libXrandr
-	x11-libs/libXrender
-	x11-libs/libXxf86vm
-	x11-libs/libxcb
 	!bundled-libs? (
 		media-libs/libsdl2[haptic]
 	)
@@ -83,7 +74,7 @@ src_install() {
 	myarch=$(usex amd64 "64" "32")
 	make_wrapper "${PN}" ./InvisibleInc${myarch} "${dir}"
 
-	make_desktop_entry "${PN}"
+	make_desktop_entry "${PN}" "Invisible Inc"
 
 	mkdir -p "${D}/${dir}"
 	mv -t "${D}/${dir}" ./*

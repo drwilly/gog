@@ -61,9 +61,9 @@ src_install() {
 	myarch=$(usex amd64 "x86_64" "x86")
 	make_wrapper "${PN}" ./Transistor.bin.${myarch} "${dir}"
 
-	make_desktop_entry "${PN}"
 	doicon -s 256 Transistor.bmp
+	make_desktop_entry "${PN}" Transistor Transistor.bmp
 
 	mkdir -p "${D}/${dir}"
-	mv -t "${D}/${dir}" *
+	mv -t "${D}/${dir}" ./*
 }
