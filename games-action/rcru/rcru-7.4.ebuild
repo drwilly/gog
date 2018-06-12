@@ -6,7 +6,9 @@ EAPI=6
 GOG_PN="river_city_ransom_underground"
 inherit gog-games
 
-SRC_URI="${GOG_PN}_en_r7_4_${PV}.sh"
+MY_PV="${PV//\./_}"
+
+SRC_URI="${GOG_PN}_en_r${MY_PV}_20582.sh"
 
 DESCRIPTION="One of the best beat'em ups of the NES era is back!"
 
@@ -17,7 +19,7 @@ IUSE="bundled-libs"
 CHECKREQS_DISK_BUILD=150M
 
 # TODO bundled-libs
-# TODO Mono?
+# TODO Mono, NLog, YAMLdotnet
 # libCSteamworks.so	: -
 # libjpeg.so.62		: virtual/jpeg
 # libmojoshader.so	: -
@@ -49,8 +51,7 @@ RDEPEND="
 DEPEND=""
 
 QA_PREBUILT="
-	${dir#/}/RCRU.bin.x86
-	${dir#/}/RCRU.bin.x86_64
+	${dir#/}/*.bin.*
 	${dir#/}/lib/*
 	${dir#/}/lib64/*
 "
@@ -86,7 +87,7 @@ src_prepare() {
 	rm RCRU
 
 	# fix logging
-	sed -i -e 's:fileName="log.txt":fileName="/tmp/rcru.log":' || die
+	sed -i -e 's:fileName="log.txt":fileName="/tmp/rcru.log":' NLog.config || die
 
 	default
 }
@@ -95,9 +96,9 @@ src_install() {
 	myarch=$(usex amd64 "x86_64" "x86")
 	make_wrapper "${PN}" ./RCRU.bin.${myarch} "${dir}"
 
-	make_desktop_entry "${PN}"
 	doicon RCRU.bmp
+	make_desktop_entry "${PN}" "River City Ransom: Underground" "RCRU.bmp"
 
 	mkdir -p "${D}/${dir}"
-	mv -t "${D}/${dir}" *
+	mv -t "${D}/${dir}" ./*
 }
