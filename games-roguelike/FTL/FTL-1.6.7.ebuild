@@ -50,6 +50,8 @@ src_install() {
 	newicon exe_icon.bmp "${PN}.bmp"
 	make_desktop_entry "${PN}" "Faster Than Light" "${PN}.bmp"
 
+	chmod +x "FTL.$ARCH"
+
 	mkdir -p "${D}/opt/${PN}/"
 	mv -t "${D}/opt/${PN}/" ftl.dat "FTL.$ARCH"
 }
