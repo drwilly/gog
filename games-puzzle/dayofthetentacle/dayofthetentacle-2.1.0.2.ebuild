@@ -14,22 +14,14 @@ IUSE=""
 
 CHECKREQS_DISK_BUILD=2700M
 
-RDEPEND="
-	virtual/opengl[abi_x86_32]
-"
-
+RDEPEND="virtual/opengl[abi_x86_32]"
 DEPEND=""
-
-QA_PREBUILT="
-	${dir#/}/Dott
-	${dir#/}/lib/*
-"
 
 src_install() {
 	make_wrapper "${PN}" ./Dott "${dir}"
 
-	make_desktop_entry "${PN}"
+	make_desktop_entry "${PN}" "Day of the Tentacle: Remastered"
 
 	mkdir -p "${D}/${dir}"
-	mv -t "${D}/${dir}" *
+	mv -t "${D}/${dir}" ./*
 }

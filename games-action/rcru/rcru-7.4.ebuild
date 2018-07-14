@@ -30,8 +30,8 @@ CHECKREQS_DISK_BUILD=150M
 # libSDL2-2.0.so.0	: media-libs/libsdl2
 # libSDL2_image-2.0.so.0: media-libs/sdl2-image
 # libsteam_api.so	: -
-# libtheoradec.so.1	: ? media-libs/libtheora
-# libtheorafile.so	: ? media-libs/libtheora
+# libtheoradec.so.1	: media-libs/libtheora
+# libtheorafile.so	: -
 # libvorbisfile.so.3	: media-libs/libvorbis
 # libvorbis.so.0	: media-libs/libvorbis
 RDEPEND="
@@ -49,12 +49,6 @@ RDEPEND="
 "
 
 DEPEND=""
-
-QA_PREBUILT="
-	${dir#/}/*.bin.*
-	${dir#/}/lib/*
-	${dir#/}/lib64/*
-"
 
 src_prepare() {
 	chmod +x lib{,64}/*.so*

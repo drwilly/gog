@@ -42,8 +42,6 @@ RDEPEND="
 
 DEPEND=""
 
-QA_PREBUILT="*"
-
 png_fix() {
 	pngfix --quiet --optimize --suffix=":pngfix" "$@"
 	for f; do

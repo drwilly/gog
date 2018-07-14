@@ -26,8 +26,6 @@ RDEPEND="
 
 DEPEND=""
 
-QA_PREBUILT="/opt/**"
-
 S="${S}/data"
 
 src_prepare() {

@@ -29,8 +29,6 @@ RDEPEND="
 
 DEPEND=""
 
-QA_PREBUILT="${dir#/}/*.bin.*"
-
 src_prepare() {
 	if ! use bundled-libs; then
 		einfo "Removing bundled libs..."

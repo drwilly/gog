@@ -38,13 +38,6 @@ RDEPEND="
 
 DEPEND=""
 
-QA_PREBUILT="
-	${dir#/}/darkest.bin.x86
-	${dir#/}/darkest.bin.x86_64
-	${dir#/}/lib/*
-	${dir#/}/lib64/*
-"
-
 png_fix() {
 	pngfix --quiet --optimize --suffix=":pngfix" "$@"
 	for f; do

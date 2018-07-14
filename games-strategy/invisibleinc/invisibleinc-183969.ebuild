@@ -31,11 +31,6 @@ RDEPEND="
 
 DEPEND=""
 
-QA_PREBUILT="
-	${dir#/}/InvisibleInc{32,64}
-	${dir#/}/lib{32,64}/*
-"
-
 src_prepare() {
 	chmod +x lib{32,64}/*
 

@@ -43,8 +43,6 @@ RDEPEND="
 
 DEPEND=""
 
-QA_PREBUILT="*"
-
 src_prepare() {
 	if ! use bundled-libs; then
 		einfo "Removing bundled libs..."

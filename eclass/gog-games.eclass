@@ -32,6 +32,8 @@ SLOT="0"
 
 DEPEND="app-arch/unzip"
 
+QA_PREBUILT="*"
+
 RESTRICT="bindist strip test fetch"
 
 GOG_S="data/noarch/game"

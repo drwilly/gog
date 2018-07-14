@@ -24,11 +24,6 @@ RDEPEND="
 
 DEPEND=""
 
-QA_PREBUILT="
-	${dir#/}/bin/ninja-bin*
-	${dir#/}/bin/lib*/*
-"
-
 src_prepare() {
 	for l in libfmodevent libfmodex; do
 		(cd bin/lib32/; ln -sf ${l}-*.so ${l}.so)
