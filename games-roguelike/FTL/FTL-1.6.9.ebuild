@@ -4,11 +4,9 @@
 
 EAPI=6
 GOG_PN="faster_than_light"
-inherit gog-games
+inherit gog2
 
-MY_PV="${PV//\./_}"
-
-SRC_URI="ftl_advanced_edition_${MY_PV}_25330.sh"
+SRC_URI="ftl_advanced_edition_${GOG_PV}_25330.sh"
 
 DESCRIPTION="Faster Than Light: A spaceship simulation real-time roguelike-like game"
 
@@ -28,28 +26,29 @@ DEPEND=""
 
 S="${S}/data"
 
-src_prepare() {
-	if ! use x86; then
-		rm FTL.x86
-	fi
-	if ! use amd64; then
-		rm FTL.amd64
-	fi
+src_unpack() {
+	use x86 || GOG_EXCLUDE+=("*/FTL.x86")
+	use amd64 || GOG_EXCLUDE+=("*/FTL.amd64")
 
-	rm FTL
-	rm -r licenses/
+	GOG_EXCLUDE+=("*/FTL_README.html")
+	GOG_EXCLUDE+=("*/FTL")
+	GOG_EXCLUDE+=("*/licenses/*")
+
+	gog2_src_unpack
+}
+
+src_prepare() {
+	chmod -x exe_icon.bmp ftl.dat
+	chmod +x "FTL.$ARCH"
 
 	default
 }
 
 src_install() {
-	make_wrapper "${PN}" "./FTL.$ARCH" "/opt/${PN}/"
+	make_wrapper "${PN}" "./FTL.$ARCH" "/opt/gog/${PN}/"
 
 	newicon exe_icon.bmp "${PN}.bmp"
 	make_desktop_entry "${PN}" "Faster Than Light" "${PN}.bmp"
 
-	chmod +x "FTL.$ARCH"
-
-	mkdir -p "${D}/opt/${PN}/"
-	mv -t "${D}/opt/${PN}/" ftl.dat "FTL.$ARCH"
+	gog2_src_install
 }
