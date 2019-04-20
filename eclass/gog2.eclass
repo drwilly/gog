@@ -57,10 +57,11 @@ gog2_pkg_nofetch() {
 declare -a GOG_EXCLUDE
 
 gog2_src_unpack() {
-	unzip -qq -o "${DISTDIR}/${A[0]}" \
-		data/noarch/gameinfo \
-		data/noarch/support/icon.png \
-		2>/dev/null
+#	unzip "${DISTDIR}/${A[0]}" \
+#		data/noarch/gameinfo \
+#		data/noarch/support/icon.png \
+#		2>/dev/null
+#	[[ $? -gt 1 ]] && die "Unzip failed"
 	for file in ${A}; do
 		unzip -qq -o "${DISTDIR}/${file}" \
 			"${GOG_S}/*" \
