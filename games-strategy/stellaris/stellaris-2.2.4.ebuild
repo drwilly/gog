@@ -16,7 +16,7 @@ SRC_URI="
 DESCRIPTION=""
 
 LICENSE="all-rights-reserved"
-KEYWORDS="-* x86"
+KEYWORDS="-* amd64 x86"
 IUSE="bundled-libs dlc_novel dlc_artbook dlc_soundtrack +dlc_horizonsignal dlc_utopia +dlc_anniversaryportraits"
 
 CHECKREQS_DISK_BUILD=10G

@@ -13,7 +13,7 @@ SRC_URI="${GOG_PN}_en_${MY_PV}_21328.sh"
 DESCRIPTION="Spiritual successor to UFO: Enemy Unknown set in the Cold-War era"
 
 LICENSE="all-rights-reserved"
-KEYWORDS="-* x86"
+KEYWORDS="-* amd64 x86"
 IUSE="extras"
 
 CHECKREQS_DISK_BUILD=3G

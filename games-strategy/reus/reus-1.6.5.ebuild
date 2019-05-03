@@ -13,7 +13,7 @@ SRC_URI="${GOG_PN}_en_${MY_PV}_20844.sh"
 DESCRIPTION=""
 
 LICENSE="all-rights-reserved"
-KEYWORDS="-* x86"
+KEYWORDS="-* amd64 x86"
 IUSE="bundled-libs"
 
 CHECKREQS_DISK_BUILD=500M
