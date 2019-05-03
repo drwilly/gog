@@ -45,7 +45,7 @@ src_prepare() {
 }
 
 src_install() {
-	make_wrapper "${PN}" "./FTL.$ARCH" "/opt/gog/${PN}/"
+	gog2_make_wrapper "./FTL.$ARCH"
 
 	newicon exe_icon.bmp "${PN}.bmp"
 	make_desktop_entry "${PN}" "Faster Than Light" "${PN}.bmp"
