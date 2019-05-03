@@ -71,6 +71,10 @@ gog2_src_unpack() {
 	done
 }
 
+gog2_make_wrapper() {
+	make_wrapper "${PN}" "$1" "/opt/gog/${PN}"
+}
+
 gog2_src_install() {
 	local GOG_D="${D}"/opt/gog/"${PN}"
 	mkdir -p "$GOG_D" || die
