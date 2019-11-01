@@ -7,10 +7,10 @@ GOG_PN="stellaris"
 inherit gog2
 
 SRC_URI="
-	${GOG_PN}_${GOG_PV}_30733.sh
-	dlc_horizonsignal? ( ${GOG_PN}_horizon_signal_${GOG_PV}_30733.sh )
-	dlc_anniversaryportraits? ( ${GOG_PN}_anniversary_portraits_${GOG_PV}_30733.sh )
-	dlc_utopia? ( ${GOG_PN}_utopia_${GOG_PV}_30733.sh )
+	${GOG_PN}_${GOG_PV}_33395.sh
+	dlc_horizonsignal? ( ${GOG_PN}_horizon_signal_${GOG_PV}_33395.sh )
+	dlc_anniversaryportraits? ( ${GOG_PN}_anniversary_portraits_${GOG_PV}_33395.sh )
+	dlc_utopia? ( ${GOG_PN}_utopia_${GOG_PV}_33395.sh )
 "
 
 DESCRIPTION=""
