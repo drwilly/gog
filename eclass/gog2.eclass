@@ -36,7 +36,7 @@ GOG_PV="${PV//\./_}"
 GOG_S="data/noarch/game"
 S="${WORKDIR}/${GOG_S}"
 
-EXPORT_FUNCTIONS pkg_nofetch src_unpack src_install pkg_postinst
+EXPORT_FUNCTIONS pkg_nofetch src_unpack src_install
 
 gog2_pkg_nofetch() {
 	einfo "Please download ${SRC_URI} from your GOG.com account and put it into ${DISTDIR}."
@@ -80,21 +80,4 @@ gog2_src_install() {
 	mkdir -p "$GOG_D" || die
 	mv -t "$GOG_D" ./* || die
 	chown root:root -R "$GOG_D" || die
-}
-
-gog2_pkg_postinst() {
-	if [ ! -z "${game_require_serial_key}" ]; then
-		elog "This game require serial key. You can obtain serial key following way"
-		elog "   1) open in internet browser 'https://www.gog.com/'"
-		elog "   2) login in your account"
-		elog "   3) go to 'Account' section"
-		elog "   3) select '${GOG_PN}'"
-		elog "   4) click on list button 'MORE'"
-		elog "   5) select 'SERIAL KEYS'"
-		elog
-	fi
-
-	if has bundled-libs ${IUSE} && ! use bundled-libs; then
-		elog "If you have problems try to reinstall the package with 'bundled-libs' use flag turned on"
-	fi
 }
