@@ -72,7 +72,7 @@ gog2_src_unpack() {
 }
 
 gog2_make_wrapper() {
-	make_wrapper "${PN}" "$1" "/opt/gog/${PN}"
+	make_wrapper "${PN}" "${1?}" "/opt/gog/${PN}"
 }
 
 gog2_src_install() {
