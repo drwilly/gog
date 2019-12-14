@@ -4,17 +4,15 @@
 
 EAPI=6
 GOG_PN="xenonauts"
-inherit gog-games
+inherit gog2
 
-MY_PV="${PV//\./_}"
-
-SRC_URI="${GOG_PN}_en_${MY_PV}_21328.sh"
+SRC_URI="${GOG_PN}_en_${GOG_PV}_21328.sh"
 
 DESCRIPTION="Spiritual successor to UFO: Enemy Unknown set in the Cold-War era"
 
 LICENSE="all-rights-reserved"
 KEYWORDS="-* amd64 x86"
-IUSE="extras"
+IUSE="bundled-deps extras"
 
 CHECKREQS_DISK_BUILD=3G
 
@@ -29,25 +27,24 @@ RDEPEND="
 
 DEPEND=""
 
-src_prepare() {
-	if ! use bundled-libs; then
-		einfo "Removing bundled libs..."
-		rm -v lib/libSDL2-2.0.so.0
+src_unpack() {
+	if ! use bundled-deps; then
+		# media-libs/libsdl2
+		GOG_EXCLUDE+=("*/lib/libSDL2-2.0.so.0")
 	fi
 
 	if ! use extras; then
-		rm -r extras/
+		GOG_EXCLUDE+=("*/extras/*")
 	fi
 
-	default
+	gog2_src_unpack
 }
 
 src_install() {
-	make_wrapper "${PN}" ./Xenonauts.bin.x86 "${dir}"
+	gog2_make_wrapper "${PN}"
 
 	newicon Icon.png xenonauts.png
 	make_desktop_entry "${PN}" Xenonauts xenonauts.png
 
-	mkdir -p "${D}/${dir}"
-	mv -t "${D}/${dir}" ./*
+	gog2_src_install
 }
