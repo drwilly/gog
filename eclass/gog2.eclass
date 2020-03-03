@@ -67,7 +67,7 @@ gog2_src_unpack() {
 			"${GOG_S}/*" \
 			-x "${GOG_EXCLUDE[@]}" \
 			2>/dev/null
-		[[ $? -gt 1 ]] && die "Unzip failed"
+		[[ $? -gt 1 ]] && die "Unzip '$file' failed"
 	done
 }
 
